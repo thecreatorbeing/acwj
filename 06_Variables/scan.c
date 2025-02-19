@@ -121,21 +121,27 @@ int scan(struct token *t) {
     return (0);
   case '+':
     t->token = T_PLUS;
+    t->intvalue = 0;
     break;
   case '-':
     t->token = T_MINUS;
+    t->intvalue = 0;
     break;
   case '*':
     t->token = T_STAR;
+    t->intvalue = 0;
     break;
   case '/':
     t->token = T_SLASH;
+    t->intvalue = 0;
     break;
   case ';':
     t->token = T_SEMI;
+    t->intvalue = 0;
     break;
   case '=':
     t->token = T_EQUALS;
+    t->intvalue = 0;
     break;
   default:
 
@@ -151,11 +157,13 @@ int scan(struct token *t) {
 
       // If it's a recognised keyword, return that token
       if (tokentype = keyword(Text)) {
-	t->token = tokentype;
-	break;
+        t->token = tokentype;
+        t->intvalue = 0;
+        break;
       }
       // Not a recognised keyword, so it must be an identifier
       t->token = T_IDENT;
+      t->intvalue = 0;
       break;
     }
     // The character isn't part of any recognised token, error

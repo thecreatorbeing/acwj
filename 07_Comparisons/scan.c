@@ -121,30 +121,38 @@ int scan(struct token *t) {
     return (0);
   case '+':
     t->token = T_PLUS;
+    t->intvalue = 0;
     break;
   case '-':
     t->token = T_MINUS;
+    t->intvalue = 0;
     break;
   case '*':
     t->token = T_STAR;
+    t->intvalue = 0;
     break;
   case '/':
     t->token = T_SLASH;
+    t->intvalue = 0;
     break;
   case ';':
     t->token = T_SEMI;
+    t->intvalue = 0;
     break;
   case '=':
     if ((c = next()) == '=') {
       t->token = T_EQ;
+      t->intvalue = 0;
     } else {
       putback(c);
       t->token = T_ASSIGN;
+      t->intvalue = 0;
     }
     break;
   case '!':
     if ((c = next()) == '=') {
       t->token = T_NE;
+      t->intvalue = 0;
     } else {
       fatalc("Unrecognised character", c);
     }
@@ -152,17 +160,21 @@ int scan(struct token *t) {
   case '<':
     if ((c = next()) == '=') {
       t->token = T_LE;
+      t->intvalue = 0;
     } else {
       putback(c);
       t->token = T_LT;
+      t->intvalue = 0;
     }
     break;
   case '>':
     if ((c = next()) == '=') {
       t->token = T_GE;
+      t->intvalue = 0;
     } else {
       putback(c);
       t->token = T_GT;
+      t->intvalue = 0;
     }
     break;
   default:
@@ -179,11 +191,13 @@ int scan(struct token *t) {
 
       // If it's a recognised keyword, return that token
       if (tokentype = keyword(Text)) {
-	t->token = tokentype;
-	break;
+        t->token = tokentype;
+        t->intvalue = 0;
+        break;
       }
       // Not a recognised keyword, so it must be an identifier
       t->token = T_IDENT;
+      t->intvalue = 0;
       break;
     }
     // The character isn't part of any recognised token, error

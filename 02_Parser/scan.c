@@ -80,15 +80,19 @@ int scan(struct token *t) {
     return (0);
   case '+':
     t->token = T_PLUS;
+    t->intvalue = 0;
     break;
   case '-':
     t->token = T_MINUS;
+    t->intvalue = 0;
     break;
   case '*':
     t->token = T_STAR;
+    t->intvalue = 0;
     break;
   case '/':
     t->token = T_SLASH;
+    t->intvalue = 0;
     break;
   default:
 
