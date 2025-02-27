@@ -59,6 +59,13 @@ static int scanint(int c) {
     c = next();
   }
 
+  //if identifier starting with number (e.g, 123Variable, which is invalid)
+  // is tried to be made, catch them and throw exception
+  if( isalpha(c) || '_'==c){
+    fatals("Invalid", "identifier");
+    exit(1);
+  }
+
   // We hit a non-integer character, put it back.
   putback(c);
   return (val);
